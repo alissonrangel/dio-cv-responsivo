@@ -11,6 +11,9 @@ let isListCharged = false;
 
 let repos = document.getElementById('github')
 
+let calendarEl = document.getElementById('calendar');
+let events = [];
+
 const sort_by = (field, reverse, primer) => {
   const key = primer
     ? function (x) {
@@ -42,10 +45,33 @@ const carregarGithubList = async () => {
 
   let githubs = [...github]
 
+  githubs = githubs.filter((item) => item.fork === false);
+
   sortedList = await githubs.sort(sort_by('pushed_at', true, (a) => a.toLowerCase()))
+
+  events = await sortedList.map((item) => { 
+    return  { 
+        title: `${item.name.length > 10 ? item.name.substring(0,9) : item.name}`,
+        start: `${item.pushed_at}`,
+        color: '#284b63',
+        url: `${item.html_url}`
+      }
+    }
+  );
+
+  calendar();
   
   githubList = await [...sortedList]
  
+}
+
+function calendar() {  
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    editable: true,
+    events: events
+  });
+  calendar.render();
 }
 
 const languagesListFunction = () => {
