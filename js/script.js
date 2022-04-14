@@ -51,8 +51,8 @@ const carregarGithubList = async () => {
 
   events = await sortedList.map((item) => { 
     return  { 
-        title: `${item.name.length > 10 ? item.name.substring(0,9) : item.name}`,
-        start: `${item.pushed_at}`,
+        title: `${item.name.length > 10 ? item.name.substring(0,15) : item.name}`,
+        start: `${item.pushed_at.substring(0,10)}`,
         color: '#284b63',
         url: `${item.html_url}`
       }
