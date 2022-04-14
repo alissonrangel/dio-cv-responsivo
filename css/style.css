@@ -12,6 +12,13 @@ body {
   font-family: 'Fira Sans', sans-serif;
 }
 
+.container{
+  max-width: 1080px;
+  margin: 30px auto;
+  background-color: #284b63;
+  box-shadow: 0 0 10px #000000;
+}
+
 main {
   background-color: #fff;
   box-shadow: 0 0 1.5rem rgba(53, 53, 53, 0.1);
